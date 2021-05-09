@@ -1,0 +1,2 @@
+This is my current File
+My hostname is - {{ ansible_hostname }}  

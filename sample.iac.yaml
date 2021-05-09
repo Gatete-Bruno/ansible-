@@ -1,0 +1,17 @@
+---
+
+- hosts: bat
+  vars: 
+      package1: "nginx"
+      package2: "wget"
+  tasks: 
+    - name: Installing package Nginx
+      yum: pkg=nginx state=present update_cache=true
+      become: true
+
+    - name: Installing wget
+      yum: name={{ package2 }} state=installed update_cache=true
+      become: true
+
+    - name: Copying test1 file
+      copy: src=/tmp/test1 dest=/tmp/test1

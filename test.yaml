@@ -1,0 +1,10 @@
+---
+  
+- hosts: gui
+  become: yes
+  tasks:
+    - name: do a uname
+      shell: uname -a > /home/batman/results.txt
+
+    - name: whoami
+      shell: whoami >> /home/batman/results.txt

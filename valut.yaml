@@ -1,0 +1,10 @@
+--- 
+
+- hosts: localhost
+  become: yes 
+  vars: 
+   - ansible_sudo_pass: bw@123
+
+  tasks:
+   - name: Install apache
+     apt: name=apache2 state=latest 

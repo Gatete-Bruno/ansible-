@@ -1,0 +1,27 @@
+
+    - name: Stop Service
+      service: name=httpd state=stopped
+      become: yes
+
+    - name: Copy template File
+      template: src=current.html.j2 dest=/var/www/html/current.html
+      ignore_errors: yes
+      notify:
+        -  Start httpd
+      become: yes
+
+    - name: Testing Conditional
+      shell: uptime
+      when: ansible_hostname == "node02"
+
+    - name: Testing conditonal 
+      shell: service httpd status
+      register: result
+      until: result.stdout.find("active(running)") != -1
+      retries: 5
+      delay: 5
+
+
+  handlers:
+    - name: start httpd 
+      service: name=httpd state=started
