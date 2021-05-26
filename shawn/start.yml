@@ -1,0 +1,9 @@
+---
+- hosts: apps
+  become: true
+  tasks: 
+    - name: do a uname
+      shell: uname -a 
+
+    - name: whoami 
+      shell: whoami 
